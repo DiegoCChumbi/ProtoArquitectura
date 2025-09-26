@@ -28,15 +28,15 @@ app.get("/api/eventos", async (req, res) => {
 app.post("/api/eventos", upload.single("file"), async (req, res) => {
   try {
     const { name } = req.body;
-    //const image = req.file;
+    const image = req.file;
     if (!name) {
       return res.status(400).json({ error: "El campo 'name' es requerido" });
     }
 
-    /*if (!image) {
+    if (!image) {
       return res.status(400).json({ error: "El campo 'image' es requerido" });
-    }*/
-    const image = "temp";
+    }
+    //const image = "temp";
     const nuevoEvento = await insertarEvento(name, image);
     res.status(201).json(nuevoEvento);
   } catch (error) {
